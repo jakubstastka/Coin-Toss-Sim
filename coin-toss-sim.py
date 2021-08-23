@@ -59,13 +59,16 @@ class CoinToss:
 
         print(result)
 
+    @classmethod
+    def get_no_tosses(cls):
+
+        try:
+            number = int(input("How many times do you want to toss the coin?\n"))
+        except ValueError:
+            print("The coin just got stuck in mid-air, levitating, looking confused.")
+
+        return number
+
 
 if __name__ == "__main__":
-
-    # of course some of you are going to try to toss it 1.5 times or toss it an elephant number of times
-    try:
-        number = int(input("How many times do you want to toss the coin?\n"))
-    except ValueError:
-        print("The coin just got stuck in mid-air, levitating, looking confused.")
-
-    CoinToss.toss(number)
+    CoinToss.toss(CoinToss.get_no_tosses())
