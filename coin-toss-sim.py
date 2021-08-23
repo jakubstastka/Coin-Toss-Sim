@@ -15,8 +15,7 @@ class CoinToss:
     def toss(cls, multitoss):
 
         if multitoss == 1:
-            toss = CoinToss.throw_coin()
-            result = f"You tossed the coin and it landed on {toss}."
+            result = f"You tossed the coin and it landed on {CoinToss.throw_coin()}."
 
         elif multitoss > 1:
             # let's set up the list for all the coin tosses
@@ -26,9 +25,8 @@ class CoinToss:
             # so we need to add one to it to get the range of coin toss count we want
             cointosses = range(1, multitoss + 1)
 
-            for toss in cointosses:
-                result = CoinToss.throw_coin()
-                multi_result.append(result)
+            for _ in cointosses:
+                multi_result.append(CoinToss.throw_coin())
 
             # count everything
             heads = multi_result.count("heads")
