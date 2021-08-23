@@ -22,8 +22,8 @@ class CoinToss:
             # let's set up the list for all the coin tosses
             multi_result = []
 
-            # remember the second parameter is NOT included, so we need to add to it to toss the coin
-            # the number of times we want, not one toss less
+            # remember the second parameter in range() is NOT included in the resulting range of numbers,
+            # so we need to add one to it to get the range of coin toss count we want
             cointosses = range(1, multitoss + 1)
 
             for toss in cointosses:
