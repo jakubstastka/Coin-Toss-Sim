@@ -11,17 +11,16 @@ class CoinToss:
         return result
 
     @classmethod
-    def toss(cls, multitoss=0):
-
-        result = ""
-        multi_result = []
+    def toss(cls, multitoss):
 
         if multitoss == 1:
             toss = CoinToss.throw_coin()
-
             result = f"You tossed the coin and it landed on {toss}."
 
         elif multitoss > 1:
+            # let's set up the list for all the coin tosses
+            multi_result = []
+
             # remember the second parameter is NOT included, so we need to add to it to toss the coin
             # the number of times we want, not one toss less
             cointosses = range(1, multitoss + 1)
@@ -60,8 +59,7 @@ class CoinToss:
         print(result)
 
     @classmethod
-    def get_no_tosses(cls):
-
+    def get_number_of_tosses(cls):
         try:
             number = int(input("How many times do you want to toss the coin?\n"))
         except ValueError:
@@ -71,4 +69,4 @@ class CoinToss:
 
 
 if __name__ == "__main__":
-    CoinToss.toss(CoinToss.get_no_tosses())
+    CoinToss.toss(CoinToss.get_number_of_tosses())
