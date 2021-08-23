@@ -3,6 +3,7 @@ import random
 
 class CoinToss:
     # multi sided coins to be added in the next update
+    # TODO: figure out if multi sided coin is still a coin or if it becomes a cube
     coin_sides = ["heads", "tails"]
 
     @classmethod
