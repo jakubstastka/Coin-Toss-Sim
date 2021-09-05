@@ -1,5 +1,5 @@
 import random
-
+from models import TossSet, Toss
 
 class CoinToss:
     # multi sided coins to be added in the next update
