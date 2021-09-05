@@ -17,4 +17,4 @@ class ResultSet(BaseModel):
 class CoinToss(BaseModel):
     heads = BooleanField()
     tails = BooleanField()
-    result_set = ForeignKeyField(ResultSet)
+    result_set = ForeignKeyField(ResultSet, backref="tosses")

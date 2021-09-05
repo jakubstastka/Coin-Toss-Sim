@@ -42,24 +42,26 @@ class TossACoin:
 
                 toss = CoinToss(result_set=result_set, heads=heads_result, tails=tails_result)
                 toss.save()
-                #multi_result.append(CoinToss.throw_coin())
 
             # count everything
-            heads = multi_result.count("heads")
-            tails = multi_result.count("tails")
+            heads = CoinToss.select().join(ResultSet).where(ResultSet.id == result_set.id).where(CoinToss.heads == "heads").count()
+            tails = CoinToss.select().join(ResultSet).where(ResultSet.id == result_set.id).where(CoinToss.tails == "tails").count()
 
             # if you throw the coin even number of times, you might not get a clear result
             if heads == tails:
-                return f"The number of heads and tails were the same. The fate is undecided."
+                print("The number of heads and tails were the same. The fate is undecided.")
+                return
 
             # set the proper winner to be used laters
             winner = "heads" if heads > tails else "tails"
 
             # maybe you want to know how many times the winner landed
             winner_count = heads if heads > tails else tails
+            loser_count = tails if heads > tails else heads
 
             result = f"You tossed a coin {multitoss} times and the results are in: \nThe {winner} have it. " \
-                     f"The coin landed on {winner} {winner_count} times."
+                     f"The coin landed on {winner} {winner_count} times. " \
+                     f"It fell on the other side {loser_count} times."
 
         # because some people are like this
         elif multitoss == 0:
@@ -71,7 +73,7 @@ class TossACoin:
         else:
             result = "I don't even know what you tried to do."
 
-        #print(result)
+        print(result)
 
     @classmethod
     def get_number_of_tosses(cls):
