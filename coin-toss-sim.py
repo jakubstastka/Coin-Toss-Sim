@@ -5,17 +5,11 @@ from models import ResultSet, CoinToss
 class TossACoin:
     # TODO: multi sided coins to be added in the next update
     # TODO: figure out if multi sided coin is still a coin or if it becomes a cube
-    coin_sides = ["heads", "tails"]
-
-
-    @classmethod
-    def throw_coin(cls):
-        result = random.choice(CoinToss.coin_sides)
-        return result
 
     @classmethod
     def toss(cls, multitoss):
 
+        # lets init the thing that keeps track of all those billions of coins you tossed
         result_set = ResultSet()
         result_set.save()
 
@@ -26,12 +20,11 @@ class TossACoin:
             toss = CoinToss(result_set=result_set, heads=heads_result, tails=tails_result)
             toss.save()
 
-            #result = f"You tossed the coin and it landed on {CoinToss.throw_coin()}."
+            winner = 'heads' if toss.heads else 'tails'
+
+            result = f"You tossed the coin and it landed on {winner}."
 
         elif multitoss > 1:
-            # let's set up the list for all the coin tosses
-            multi_result = []
-
             # remember the second parameter in range() is NOT included in the resulting range of numbers,
             # so we need to add one to it to get the range of coin toss count we want
             cointosses = range(1, multitoss + 1)
