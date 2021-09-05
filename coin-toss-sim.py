@@ -1,10 +1,12 @@
 import random
-from models import TossSet, Toss
+from models import ResultSet, CoinToss
 
-class CoinToss:
-    # multi sided coins to be added in the next update
+
+class TossACoin:
+    # TODO: multi sided coins to be added in the next update
     # TODO: figure out if multi sided coin is still a coin or if it becomes a cube
     coin_sides = ["heads", "tails"]
+
 
     @classmethod
     def throw_coin(cls):
@@ -14,8 +16,17 @@ class CoinToss:
     @classmethod
     def toss(cls, multitoss):
 
+        result_set = ResultSet()
+        result_set.save()
+
         if multitoss == 1:
-            result = f"You tossed the coin and it landed on {CoinToss.throw_coin()}."
+            heads_result = random.choice([True, False])
+            tails_result = False if heads_result else True
+
+            toss = CoinToss(result_set=result_set, heads=heads_result, tails=tails_result)
+            toss.save()
+
+            #result = f"You tossed the coin and it landed on {CoinToss.throw_coin()}."
 
         elif multitoss > 1:
             # let's set up the list for all the coin tosses
@@ -26,7 +37,12 @@ class CoinToss:
             cointosses = range(1, multitoss + 1)
 
             for _ in cointosses:
-                multi_result.append(CoinToss.throw_coin())
+                heads_result = random.choice([True, False])
+                tails_result = False if heads_result else True
+
+                toss = CoinToss(result_set=result_set, heads=heads_result, tails=tails_result)
+                toss.save()
+                #multi_result.append(CoinToss.throw_coin())
 
             # count everything
             heads = multi_result.count("heads")
@@ -55,7 +71,7 @@ class CoinToss:
         else:
             result = "I don't even know what you tried to do."
 
-        print(result)
+        #print(result)
 
     @classmethod
     def get_number_of_tosses(cls):
@@ -68,4 +84,4 @@ class CoinToss:
 
 
 if __name__ == "__main__":
-    CoinToss.toss(CoinToss.get_number_of_tosses())
+    TossACoin.toss(TossACoin.get_number_of_tosses())

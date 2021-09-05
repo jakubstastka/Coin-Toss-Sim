@@ -5,17 +5,16 @@ from peewee import *
 db = SqliteDatabase("cointosses.db")
 
 
-class TossSet(Model):
-    tossed = DateTimeField(default=datetime.datetime.now)
-
+class BaseModel(Model):
     class Meta:
         database = db
 
 
-class Toss(Model):
-    set = ForeignKeyField(TossSet, backref="tosses")
+class ResultSet(BaseModel):
+    created = DateTimeField(default=datetime.datetime.now)
+
+
+class CoinToss(BaseModel):
     heads = BooleanField()
     tails = BooleanField()
-
-    class Meta:
-        database = db
+    result_set = ForeignKeyField(ResultSet)
