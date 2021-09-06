@@ -31,7 +31,7 @@ class CoinToss(BaseModel):
         result_set.save()
 
         if not isinstance(multitoss, int):
-            return "Why would you do this?"
+            return "Why and how would you do this?"
 
         if multitoss == 1:
             heads_result = random.choice([True, False])
