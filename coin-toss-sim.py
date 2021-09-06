@@ -29,12 +29,15 @@ class TossACoin:
             # so we need to add one to it to get the range of coin toss count we want
             cointosses = range(1, multitoss + 1)
 
-            for _ in cointosses:
+            for cointoss in cointosses:
                 heads_result = random.choice([True, False])
                 tails_result = False if heads_result else True
 
                 toss = CoinToss(result_set=result_set, heads=heads_result, tails=tails_result)
                 toss.save()
+
+                if cointoss % 100 == 0:
+                    print(f"So far tossed {cointoss} coins out of {multitoss} total.")
 
             # count everything
             heads = CoinToss.select().join(ResultSet).where(ResultSet.id == result_set.id).where(CoinToss.heads == "heads").count()
