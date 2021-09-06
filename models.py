@@ -30,6 +30,9 @@ class CoinToss(BaseModel):
         result_set = ResultSet()
         result_set.save()
 
+        if not isinstance(multitoss, int):
+            return "Why would you do this?"
+
         if multitoss == 1:
             heads_result = random.choice([True, False])
             tails_result = False if heads_result else True
@@ -64,8 +67,7 @@ class CoinToss(BaseModel):
 
             # if you throw the coin even number of times, you might not get a clear result
             if heads == tails:
-                print("The number of heads and tails were the same. The fate is undecided.")
-                return
+                return "The number of heads and tails were the same. The fate is undecided."
 
             # set the proper winner to be used laters
             winner = "heads" if heads > tails else "tails"
@@ -88,7 +90,7 @@ class CoinToss(BaseModel):
         else:
             result = "I don't even know what you tried to do."
 
-        print(result)
+        return result
 
     @classmethod
     def get_number_of_tosses(cls):
@@ -96,5 +98,6 @@ class CoinToss(BaseModel):
             number = int(input("How many times do you want to toss the coin?\n"))
         except ValueError:
             print("The coin just got stuck in mid-air, levitating, looking confused.")
+            return
 
         return number
