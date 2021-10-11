@@ -16,9 +16,6 @@ Now uses a sqlite3.
 - [X] Implement SQLite support for coin tosses, so it does not crash when you flip the coin 100 milion times. (DONE using Peewee ORM)
 - [ ] The script should remember if you try to cheat it - toss the coin zero number of times, negative number of times, or you try to feed the input different data type other than INT. 
 - [ ] Implement Lady Luck type of figure. There should be a chance that she would favour one side of coin over the other. 
-- [ ] Lady Luck will remember if you try to toss the coin "wrong" amount of times (zero, negative number, etc.). With rising number of "wrong" tosses there will be a higher chance of her not allowing you to toss the coin. Also random events will occur - coin dissappears, turns into something else, etc. 
-- [ ] Implement a formula, that will check "good" tosses against "wrong" tosses. 
-- [ ] When treshhold in point 8 is reached, a text-based adventure game will open up. 
 
 More to come.
 
